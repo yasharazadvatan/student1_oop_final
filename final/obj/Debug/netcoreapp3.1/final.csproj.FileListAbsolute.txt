@@ -74,3 +74,5 @@ D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\net
 D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\final.dll
 D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\final.pdb
 D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\final.genruntimeconfig.cache
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\bin\Debug\netcoreapp3.1\Humanizer.dll
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
