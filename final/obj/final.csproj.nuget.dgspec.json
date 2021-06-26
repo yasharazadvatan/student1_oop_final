@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\sahar_final\\final\\final\\final.csproj": {}
+    "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\Final\\final\\final.csproj": {}
   },
   "projects": {
-    "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\sahar_final\\final\\final\\final.csproj": {
+    "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\Final\\final\\final.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\sahar_final\\final\\final\\final.csproj",
+        "projectUniqueName": "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\Final\\final\\final.csproj",
         "projectName": "final",
-        "projectPath": "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\sahar_final\\final\\final\\final.csproj",
+        "projectPath": "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\Final\\final\\final.csproj",
         "packagesPath": "C:\\Users\\Yashar\\.nuget\\packages\\",
-        "outputPath": "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\sahar_final\\final\\final\\obj\\",
+        "outputPath": "D:\\ders\\homeworks\\OOP\\Final\\general_information_system\\Final\\final\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yashar\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,16 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.7, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
