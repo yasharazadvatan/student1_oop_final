@@ -14,8 +14,8 @@ namespace final.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("ProductVersion", "3.1.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("final.Models.Course", b =>
@@ -137,6 +137,9 @@ namespace final.Migrations
                     b.Property<string>("Tel")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
@@ -176,10 +179,6 @@ namespace final.Migrations
                         .HasForeignKey("TeacherCourseCourseId", "TeacherCourseTeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("TeacherCourse");
                 });
 
             modelBuilder.Entity("final.Models.TeacherCourse", b =>
@@ -195,30 +194,6 @@ namespace final.Migrations
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("final.Models.Course", b =>
-                {
-                    b.Navigation("TeacherCourses");
-                });
-
-            modelBuilder.Entity("final.Models.Student", b =>
-                {
-                    b.Navigation("Plans");
-                });
-
-            modelBuilder.Entity("final.Models.Teacher", b =>
-                {
-                    b.Navigation("TeacherCourses");
-                });
-
-            modelBuilder.Entity("final.Models.TeacherCourse", b =>
-                {
-                    b.Navigation("Plans");
                 });
 #pragma warning restore 612, 618
         }
