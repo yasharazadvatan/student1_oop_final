@@ -16,6 +16,7 @@ namespace final.Models
         public string Mail { get; set; }
         public string Password { get; set; }
         public string Prefix { get; set; }
+        public bool isAdmin { get; set; }
         public IList<TeacherCourse> TeacherCourses { get; set; }
     }
 }
