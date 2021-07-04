@@ -1,0 +1,72 @@
+﻿@model IEnumerable<final.VıewModels.TeacherCourseAssistant>
+
+@{
+    ViewData["Title"] = "Index";
+
+    if (ViewBag.Admin == "true")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+    }
+}
+
+<h1>Index</h1>
+
+@if (ViewBag.Admin == "true")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Course)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Teacher)
+            </th>
+            <th>
+                Research Assistant
+            </th>
+            <th>
+                View Students
+            </th>
+            @if (ViewBag.Admin == "true")
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Teacher.Mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assistant.Mail)
+                </td>
+                <td>
+                    <a asp-action="GetStudents" asp-route-id="@item.TeacherCourse.Id">View Students</a>
+                </td>
+                @if (ViewBag.Admin == "true")
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TeacherCourse.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TeacherCourse.Id })
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

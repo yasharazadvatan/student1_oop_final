@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210626200759_init_mig.cs" />
+    <Compile Remove="Migrations\20210626200759_init_mig.Designer.cs" />
+    <Compile Remove="Migrations\20210627130547_chenage_courseType.cs" />
+    <Compile Remove="Migrations\20210627130547_chenage_courseType.Designer.cs" />
+    <Compile Remove="Migrations\20210627133818_add_isAdmin_column_To_TEACHER_ENTITY.cs" />
+    <Compile Remove="Migrations\20210627133818_add_isAdmin_column_To_TEACHER_ENTITY.Designer.cs" />
     <Compile Remove="Migrations\20210627160853_initial-migration.cs" />
     <Compile Remove="Migrations\20210627160853_initial-migration.Designer.cs" />
+    <Compile Remove="Migrations\20210704121448_init_mig.cs" />
+    <Compile Remove="Migrations\20210704121448_init_mig.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

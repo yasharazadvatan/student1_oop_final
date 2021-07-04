@@ -16,6 +16,9 @@ namespace final.Models
         public string Mail { get; set; }
         public string Password { get; set; }
         public int ConselorId { get; set; }
+        public string DegreeType { get; set; }
+        public bool isAssistant { get; set; }
+        public bool isGraduated { get; set; }
         public ICollection<Plan> Plans { get; set; }
     }
 }

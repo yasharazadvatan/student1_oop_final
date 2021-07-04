@@ -3,19 +3,41 @@
     Layout = null;
 }
 
-<h1>Student - login</h1>
-<form asp-action="StudentLogin" method="post">
-    email:
-    <input type="text" name="mail" value="" />
-    password:
-    <input type="password" name="password" value="" />
-    <input type="submit" value="submit" />
-</form>
-<h1>Teacher - login</h1>
-<form asp-action="TeacherLogin" method="post">
-    email:
-    <input type="text" name="mail" value="" />
-    password:
-    <input type="password" name="password" value="" />
-    <input type="submit" value="submit" />
-</form>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="row m-0 mt-5">
+        <div class="col-2"></div>
+        <div class="col-3">
+
+            <h3>Student - login</h3>
+            <form asp-action="StudentLogin" method="post">
+                email:<br />
+                <input type="text" style="width:100%;" name="mail" value="" />
+                password:<br />
+                <input type="password" style="width:100%;" name="password" value="" />
+                <br />
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-3">
+            <h3>Teacher - login</h3>
+            <form asp-action="TeacherLogin" method="post">
+                email: <br />
+                <input type="text" style="width:100%;" name="mail" value="" />
+                password:<br />
+                <input type="password" style="width:100%;" name="password" value="" />
+                <br />
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

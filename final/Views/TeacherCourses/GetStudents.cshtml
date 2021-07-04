@@ -1,0 +1,47 @@
+﻿@model IEnumerable<final.Models.Plan>
+
+@{
+    ViewData["Title"] = "GetStudents";
+
+    if (ViewBag.Admin == "true")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+    }
+}
+
+<h1>GetStudents</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Not)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isPassed)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                 @Html.DisplayFor(modelItem => item.Student.Name) - @Html.DisplayFor(modelItem => item.Student.Family)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Not)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isPassed)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

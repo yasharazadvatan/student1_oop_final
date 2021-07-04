@@ -9,8 +9,8 @@ using final.Models;
 namespace final.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20210627130547_chenage_courseType")]
-    partial class chenage_courseType
+    [Migration("20210704121710_init_mig")]
+    partial class init_mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,13 +51,7 @@ namespace final.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TeacherCourseCourseId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TeacherCourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherCourseTeacherId")
                         .HasColumnType("int");
 
                     b.Property<bool>("isPassed")
@@ -67,7 +61,7 @@ namespace final.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.HasIndex("TeacherCourseCourseId", "TeacherCourseTeacherId");
+                    b.HasIndex("TeacherCourseId");
 
                     b.ToTable("Plans");
                 });
@@ -84,6 +78,9 @@ namespace final.Migrations
 
                     b.Property<int>("ConselorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("DegreeType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Family")
                         .HasColumnType("nvarchar(max)");
@@ -102,6 +99,12 @@ namespace final.Migrations
 
                     b.Property<string>("Tel")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isAssistant")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isGraduated")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -139,6 +142,9 @@ namespace final.Migrations
                     b.Property<string>("Tel")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
@@ -146,19 +152,23 @@ namespace final.Migrations
 
             modelBuilder.Entity("final.Models.TeacherCourse", b =>
                 {
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<int>("ResearchAssistantId")
                         .HasColumnType("int");
 
-                    b.HasKey("CourseId", "TeacherId");
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("TeacherId");
 
@@ -175,7 +185,7 @@ namespace final.Migrations
 
                     b.HasOne("final.Models.TeacherCourse", "TeacherCourse")
                         .WithMany("Plans")
-                        .HasForeignKey("TeacherCourseCourseId", "TeacherCourseTeacherId")
+                        .HasForeignKey("TeacherCourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

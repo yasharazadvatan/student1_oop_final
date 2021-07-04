@@ -167,3 +167,15 @@ D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\net
 D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\TeacherIndex.cshtml.g.cs
 D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Dashboard\StudentIndex.cshtml.g.cs
 D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\final.csprojAssemblyReference.cache
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\TeacherCourses\Create.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\TeacherCourses\Delete.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\TeacherCourses\Details.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\TeacherCourses\Edit.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\TeacherCourses\Index.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Plans\Create.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Plans\Delete.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Plans\Details.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Plans\Edit.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Plans\Index.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Index.cshtml.g.cs
+D:\ders\homeworks\OOP\Final\general_information_system\Final\final\obj\Debug\netcoreapp3.1\Razor\Views\TeacherCourses\GetStudents.cshtml.g.cs

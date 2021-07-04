@@ -2,9 +2,15 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.Admin == "true")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+    }
 }
-
 <h1>Edit</h1>
 
 <h4>Teacher</h4>
@@ -65,8 +71,10 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+@if (ViewBag.Admin == "true")
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
 

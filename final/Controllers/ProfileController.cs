@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using final.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,27 +9,37 @@ using System.Threading.Tasks;
 
 namespace final.Controllers
 {
-    public class PlanController : Controller
+    public class ProfileController : Controller
     {
-        // GET: PlanController
-        public ActionResult Index()
+        private readonly MyDbContext _context;
+
+        public ProfileController(MyDbContext context)
         {
-            return View();
+            _context = context;
         }
 
-        // GET: PlanController/Details/5
+        // GET: ProfileController
+        public async Task<ActionResult> Index()
+        {
+            var user = await _context.Students.FirstOrDefaultAsync(x => x.Id == HttpContext.Session.GetInt32("UserId"));
+            var x = await _context.Teachers.FirstOrDefaultAsync(x => x.Id == user.ConselorId);
+            ViewBag.Conselor = x.Mail + "-" + x.Name + " - " + x.Family;
+            return View(user);
+        }
+
+        // GET: ProfileController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PlanController/Create
+        // GET: ProfileController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: PlanController/Create
+        // POST: ProfileController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -42,13 +54,13 @@ namespace final.Controllers
             }
         }
 
-        // GET: PlanController/Edit/5
+        // GET: ProfileController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PlanController/Edit/5
+        // POST: ProfileController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -63,13 +75,13 @@ namespace final.Controllers
             }
         }
 
-        // GET: PlanController/Delete/5
+        // GET: ProfileController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PlanController/Delete/5
+        // POST: ProfileController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
