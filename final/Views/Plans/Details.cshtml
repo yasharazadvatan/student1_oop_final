@@ -1,0 +1,43 @@
+﻿@model final.Models.Plan
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Plan</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Student)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Student.Mail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TeacherCourse)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TeacherCourse.Teacher.Mail) - @Html.DisplayFor(model => model.TeacherCourse.Course.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Not)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Not)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.isPassed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.isPassed)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

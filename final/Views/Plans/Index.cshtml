@@ -1,0 +1,83 @@
+﻿@model IEnumerable<final.Models.Plan>
+
+@{
+    ViewData["Title"] = "Index";
+
+    if (ViewBag.UserType == "admin")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else if (ViewBag.UserType == "teacher")
+    {
+        Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_StudentLayout.cshtml";
+    }
+}
+
+<h1>Index</h1>
+
+@if (ViewBag.UserType == "admin")
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TeacherCourse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Not)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isPassed)
+            </th>
+            @if (ViewBag.UserType == "admin" || ViewBag.UserType == "teacher")
+            {
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeacherCourse.Teacher.Mail) - @Html.DisplayFor(modelItem => item.TeacherCourse.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Not)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isPassed)
+                </td>
+
+                <td>
+
+                    @if (ViewBag.UserType == "admin")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <span>|</span>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> <span>|</span>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    }
+                    @if (ViewBag.UserType == "teacher")
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit Not</a> <span>|</span>
+                    }
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

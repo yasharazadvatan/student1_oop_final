@@ -43,16 +43,15 @@ namespace final.Controllers
             {
                 HttpContext.Session.SetString("Admin", "true");
                 HttpContext.Session.SetString("UserType", "admin");
-                HttpContext.Session.SetString("AdminId", t.Id.ToString());
-                HttpContext.Session.SetString("AdminMail", t.Mail);
             }
             else
             {
                 HttpContext.Session.SetString("Admin", "false");
                 HttpContext.Session.SetString("UserType", "teacher");
-                HttpContext.Session.SetString("TeacherId", t.Id.ToString());
-                HttpContext.Session.SetString("TeacherMail", t.Mail);
             }
+
+            HttpContext.Session.SetInt32("UserId", t.Id);
+            HttpContext.Session.SetString("UserMail", t.Mail);
 
             return RedirectToAction("Index", "Dashboard");
         }
@@ -69,8 +68,8 @@ namespace final.Controllers
 
             HttpContext.Session.SetString("Admin", "false");
             HttpContext.Session.SetString("UserType", "student");
-            HttpContext.Session.SetString("TeacherId", s.Id.ToString());
-            HttpContext.Session.SetString("TeacherMail", s.Mail);
+            HttpContext.Session.SetInt32("UserId", s.Id);
+            HttpContext.Session.SetString("UserMail", s.Mail);
 
             return RedirectToAction("Index", "Dashboard");
         }

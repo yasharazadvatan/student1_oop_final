@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace final.Controllers
 {
@@ -21,7 +22,13 @@ namespace final.Controllers
         // GET: Students
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            if (HttpContext.Session.GetString("Admin") == "true")
+            {
+                ViewBag.Admin = "true";
+                return View(await _context.Students.ToListAsync());
+            }
+            ViewBag.Admin = "false";
+            return View(await _context.Students.Where(x => x.ConselorId == HttpContext.Session.GetInt32("UserId")).ToListAsync());
         }
 
         // GET: Students/Details/5
@@ -38,13 +45,17 @@ namespace final.Controllers
             {
                 return NotFound();
             }
-
+            var getConselor = from a in _context.Teachers.ToList()
+                              join b in _context.Students.ToList() on a.Id equals b.ConselorId
+                              select a;
+            ViewData["Conselor"] = getConselor.FirstOrDefault().Mail;
             return View(student);
         }
 
         // GET: Students/Create
         public IActionResult Create()
         {
+            ViewData["Conselor"] = new SelectList(_context.Teachers, "Id", "Mail");
             return View();
         }
 
@@ -53,7 +64,7 @@ namespace final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Family,StudentNumber,Address,Tel,Mail,Password,ConselorId")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,Name,Family,StudentNumber,Address,Tel,Mail,Password,ConselorId,isAssistant,DegreeType,isGraduated")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +72,7 @@ namespace final.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Conselor"] = new SelectList(_context.Teachers, "Id", "Mail");
             return View(student);
         }
 
@@ -77,6 +89,7 @@ namespace final.Controllers
             {
                 return NotFound();
             }
+            ViewData["Conselor"] = new SelectList(_context.Teachers, "Id", "Mail", student.ConselorId);
             return View(student);
         }
 
@@ -85,7 +98,7 @@ namespace final.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Family,StudentNumber,Address,Tel,Mail,Password,ConselorId")] Student student)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Family,StudentNumber,Address,Tel,Mail,Password,ConselorId,isAssistant,DegreeType,isGraduated")] Student student)
         {
             if (id != student.Id)
             {
@@ -112,6 +125,7 @@ namespace final.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Conselor"] = new SelectList(_context.Teachers, "Id", "Mail", student.ConselorId);
             return View(student);
         }
 

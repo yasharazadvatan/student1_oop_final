@@ -22,6 +22,17 @@ namespace final.Models
         protected override void OnModelCreating(ModelBuilder mb)
         {
             mb.Entity<TeacherCourse>().HasKey(pt => new { pt.CourseId, pt.TeacherId });
+
+            mb.Entity<TeacherCourse>()
+                .HasOne(bc => bc.Teacher)
+                .WithMany(b => b.TeacherCourses)
+                .HasForeignKey(bc => bc.TeacherId);
+
+            mb.Entity<TeacherCourse>()
+                .HasOne(bc => bc.Course)
+                .WithMany(c => c.TeacherCourses)
+                .HasForeignKey(bc => bc.CourseId);
+            mb.Entity<TeacherCourse>().HasKey(pt => new { pt.Id });
         }
     }
 }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using final.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace final.Controllers
 {
@@ -21,7 +23,13 @@ namespace final.Controllers
         // GET: Teachers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Teachers.ToListAsync());
+            if (HttpContext.Session.GetString("Admin") == "true")
+            {
+                ViewBag.Admin = "true";
+                return View(await _context.Teachers.ToListAsync());
+            }
+            ViewBag.Admin = "false";
+            return RedirectToAction("Details", "Teachers", new RouteValueDictionary(new { id = HttpContext.Session.GetInt32("UserId") }));
         }
 
         // GET: Teachers/Details/5
@@ -39,12 +47,26 @@ namespace final.Controllers
                 return NotFound();
             }
 
+            if (teacher.isAdmin)
+            {
+                ViewBag.Admin = "true";
+            }
+            else
+            {
+                ViewBag.Admin = "false";
+            }
+
             return View(teacher);
         }
 
         // GET: Teachers/Create
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("Admin") == "false")
+            {
+                return NotFound();
+            }
+
             return View();
         }
 
@@ -55,6 +77,11 @@ namespace final.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Family,TeacherNumber,Address,Tel,Mail,Password,Prefix,isAdmin")] Teacher teacher)
         {
+            if (HttpContext.Session.GetString("Admin") == "false")
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(teacher);
@@ -77,6 +104,16 @@ namespace final.Controllers
             {
                 return NotFound();
             }
+
+            if (teacher.isAdmin)
+            {
+                ViewBag.Admin = "true";
+            }
+            else
+            {
+                ViewBag.Admin = "false";
+            }
+
             return View(teacher);
         }
 
@@ -96,6 +133,10 @@ namespace final.Controllers
             {
                 try
                 {
+                    if (HttpContext.Session.GetString("Admin") == "false")
+                    {
+                        teacher.isAdmin = false;
+                    }
                     _context.Update(teacher);
                     await _context.SaveChangesAsync();
                 }
@@ -112,6 +153,16 @@ namespace final.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            if (teacher.isAdmin)
+            {
+                ViewBag.Admin = "true";
+            }
+            else
+            {
+                ViewBag.Admin = "false";
+            }
+
             return View(teacher);
         }
 
@@ -128,6 +179,15 @@ namespace final.Controllers
             if (teacher == null)
             {
                 return NotFound();
+            }
+
+            if (teacher.isAdmin)
+            {
+                ViewBag.Admin = "true";
+            }
+            else
+            {
+                ViewBag.Admin = "false";
             }
 
             return View(teacher);

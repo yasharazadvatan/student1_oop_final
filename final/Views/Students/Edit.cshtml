@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Edit</h1>
@@ -49,9 +50,24 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ConselorId" class="control-label"></label>
-                <input asp-for="ConselorId" class="form-control" />
+                <label asp-for="DegreeType" class="control-label"></label>
+                <input asp-for="DegreeType" class="form-control" />
+                <span asp-validation-for="DegreeType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConselorId" class="control-label">Conselor</label>
+                <select asp-for="ConselorId" class="form-control" asp-items="ViewBag.Conselor"></select>
                 <span asp-validation-for="ConselorId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isAssistant" /> @Html.DisplayNameFor(model => model.isAssistant)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isGraduated" /> @Html.DisplayNameFor(model => model.isGraduated)
+                </label>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -64,6 +80,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

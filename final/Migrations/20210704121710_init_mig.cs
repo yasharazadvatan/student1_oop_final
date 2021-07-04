@@ -33,7 +33,10 @@ namespace final.Migrations
                     Tel = table.Column<string>(nullable: true),
                     Mail = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    ConselorId = table.Column<int>(nullable: false)
+                    ConselorId = table.Column<int>(nullable: false),
+                    DegreeType = table.Column<string>(nullable: true),
+                    isAssistant = table.Column<bool>(nullable: false),
+                    isGraduated = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +56,8 @@ namespace final.Migrations
                     Tel = table.Column<string>(nullable: true),
                     Mail = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    Prefix = table.Column<string>(nullable: true)
+                    Prefix = table.Column<string>(nullable: true),
+                    isAdmin = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,14 +68,15 @@ namespace final.Migrations
                 name: "TeacherCourses",
                 columns: table => new
                 {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CourseId = table.Column<int>(nullable: false),
                     TeacherId = table.Column<int>(nullable: false),
-                    Id = table.Column<int>(nullable: false),
                     ResearchAssistantId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TeacherCourses", x => new { x.CourseId, x.TeacherId });
+                    table.PrimaryKey("PK_TeacherCourses", x => x.Id);
                     table.ForeignKey(
                         name: "FK_TeacherCourses_Courses_CourseId",
                         column: x => x.CourseId,
@@ -94,8 +99,6 @@ namespace final.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentId = table.Column<int>(nullable: false),
                     TeacherCourseId = table.Column<int>(nullable: false),
-                    TeacherCourseCourseId = table.Column<int>(nullable: false),
-                    TeacherCourseTeacherId = table.Column<int>(nullable: false),
                     Not = table.Column<double>(nullable: false),
                     isPassed = table.Column<bool>(nullable: false)
                 },
@@ -109,10 +112,10 @@ namespace final.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Plans_TeacherCourses_TeacherCourseCourseId_TeacherCourseTeacherId",
-                        columns: x => new { x.TeacherCourseCourseId, x.TeacherCourseTeacherId },
+                        name: "FK_Plans_TeacherCourses_TeacherCourseId",
+                        column: x => x.TeacherCourseId,
                         principalTable: "TeacherCourses",
-                        principalColumns: new[] { "CourseId", "TeacherId" },
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -122,9 +125,14 @@ namespace final.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plans_TeacherCourseCourseId_TeacherCourseTeacherId",
+                name: "IX_Plans_TeacherCourseId",
                 table: "Plans",
-                columns: new[] { "TeacherCourseCourseId", "TeacherCourseTeacherId" });
+                column: "TeacherCourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeacherCourses_CourseId",
+                table: "TeacherCourses",
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TeacherCourses_TeacherId",
