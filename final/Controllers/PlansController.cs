@@ -74,7 +74,9 @@ namespace final.Controllers
                                       {
                                           Student = b,
                                           TeacherCourse = c,
-                                          Id = a.Id
+                                          Id = a.Id,
+                                          Not = a.Not,
+                                          isPassed = a.isPassed
                                       };
                     return View(myDbContext);
                 }
